@@ -25,15 +25,15 @@ namespace FINT.Model.Resource
 
         public static Link with(Type placeholderClass, string[] pathElements)
         {
-            return with(placeholderClass, String.Join("/", pathElements));            
+            return with(placeholderClass, string.Join("/", pathElements));
         }
 
         private static Link with(Type placeholderClass, string path)
         {
-            var placeholder = Link.getHrefPlaceholder(placeholderClass);
+            var placeholder = getHrefPlaceholder(placeholderClass);
             var regex = new Regex("^/");
             path = regex.Replace(path, "", 1);
-            
+
             return new Link(string.Format("${{{0}}}/{1}", placeholder, path));
         }
 
@@ -41,12 +41,11 @@ namespace FINT.Model.Resource
         {
             var regex1 = new Regex("^FINT\\.Model(\\.Resource)?\\.");
             var regex2 = new Regex("Resource$");
-        
+
             var replace1 = regex1.Replace(placeholderClass.FullName, "", 1);
             var replace2 = regex2.Replace(replace1, "", 1);
 
             return replace2.ToLower();
         }
-
     }
 }
