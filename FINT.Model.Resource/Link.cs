@@ -21,7 +21,7 @@ namespace FINT.Model.Resource
             return new Link(verdi);
         }
 
-        public static Link with(Type placeholderClass, string[] pathElements)
+        public static Link with(Type placeholderClass, params string[] pathElements)
         {
             return with(placeholderClass, string.Join("/", pathElements));
         }
