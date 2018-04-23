@@ -5,18 +5,16 @@ namespace FINT.Model.Resource
 {
     public class Link
     {
+        public Link()
+        {
+        }
+
         private Link(string verdi)
         {
             href = verdi;
         }
 
-        public string href { get; set; }
-
-        // TODO: Is this needed?
-        public void setVerdi(string verdi)
-        {
-            href = verdi;
-        }
+        public string href { get; }
 
         public static Link with(string verdi)
         {
@@ -34,7 +32,7 @@ namespace FINT.Model.Resource
             var regex = new Regex("^/");
             path = regex.Replace(path, "", 1);
 
-            return new Link(string.Format("${{{0}}}/{1}", placeholder, path));
+            return new Link($"${{{placeholder}}}/{path}");
         }
 
         private static string getHrefPlaceholder(Type placeholderClass)

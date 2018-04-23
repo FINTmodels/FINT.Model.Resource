@@ -13,7 +13,7 @@ namespace FINT.Model.Resource
         protected EmbeddedResources<T> Embedded = new EmbeddedResources<T>();
 
         [JsonProperty(PropertyName = "total_items")]
-        protected int TotalItems { get; set; }
+        public int TotalItems { get; set; }
 
 
         [OnSerialized]
@@ -32,21 +32,10 @@ namespace FINT.Model.Resource
             return Links["self"];
         }
 
-        /*
-            @JsonIgnore
-            public List<T> getContent() {
-                return new ObjectMapper().convertValue(embedded.entries, getTypeReference());
-            }
-        
-            @JsonIgnore
-            public abstract TypeReference<List<T>> getTypeReference();
-        */
-
         public List<T> GetContent()
         {
             return Embedded.Entries;
         }
-
 
         public class EmbeddedResources<T>
         {

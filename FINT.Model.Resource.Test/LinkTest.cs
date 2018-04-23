@@ -7,7 +7,7 @@ namespace FINT.Model.Resource.Test
         [Fact]
         public void Create_Link_with_PersonResource_placeholder()
         {
-            var link = Link.with(typeof(PersonResource), new string[] { "/id" });
+            var link = Link.with(typeof(PersonResource), new string[] { "id" });
 
             Assert.Equal(link.href, "${test.person}/id");
         }
@@ -15,7 +15,7 @@ namespace FINT.Model.Resource.Test
         [Fact]
         public void Create_Link_with_Person_placeholder()
         {
-            var link = Link.with(typeof(Person), new string[] { "/id" });
+            var link = Link.with(typeof(Person), new string[] { "id" });
 
             Assert.Equal(link.href, "${test.person}/id");
         }
