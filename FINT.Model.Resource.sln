@@ -10,6 +10,7 @@ ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	Jenkinsfile = Jenkinsfile
 	version.txt = version.txt
+	NuGet.Config = NuGet.Config
 EndProjectSection
 EndProject
 Global
