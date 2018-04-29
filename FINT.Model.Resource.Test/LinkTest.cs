@@ -9,7 +9,7 @@ namespace FINT.Model.Resource.Test
         {
             var link = Link.with(typeof(PersonResource), "/id");
 
-            Assert.Equal(link.href, "${test.person}/id");
+            Assert.Equal("${test.person}/id", link.href);
         }
 
         [Fact]
@@ -17,7 +17,7 @@ namespace FINT.Model.Resource.Test
         {
             var link = Link.with(typeof(Person), "/id");
 
-            Assert.Equal(link.href, "${test.person}/id");
+            Assert.Equal("${test.person}/id", link.href);
         }
     }
 }
