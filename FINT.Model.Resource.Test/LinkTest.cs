@@ -1,6 +1,4 @@
 using Newtonsoft.Json;
-using System;
-using System.Diagnostics;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -8,25 +6,25 @@ namespace FINT.Model.Resource.Test
 {
     public class LinkTest
     {
-        private readonly ITestOutputHelper output;
-
         public LinkTest(ITestOutputHelper output)
         {
             this.output = output;
+        }
+
+        private readonly ITestOutputHelper output;
+
+        [Fact]
+        public void Create_Link_with_Person_placeholder()
+        {
+            var link = Link.with(typeof(Person), "/id");
+
+            Assert.Equal("${test.person}/id", link.href);
         }
 
         [Fact]
         public void Create_Link_with_PersonResource_placeholder()
         {
             var link = Link.with(typeof(PersonResource), "/id");
-
-            Assert.Equal("${test.person}/id", link.href);
-        }
-
-        [Fact]
-        public void Create_Link_with_Person_placeholder()
-        {
-            var link = Link.with(typeof(Person), "/id");
 
             Assert.Equal("${test.person}/id", link.href);
         }
@@ -51,7 +49,6 @@ namespace FINT.Model.Resource.Test
             output.WriteLine(ObjectDumper.Dump(deserializeObject));
             Assert.NotNull(deserializeObject.href);
             Assert.Equal(link.href, deserializeObject.href);
-
         }
     }
 }
