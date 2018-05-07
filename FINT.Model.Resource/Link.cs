@@ -14,7 +14,7 @@ namespace FINT.Model.Resource
             href = verdi;
         }
 
-        public string href { get; }
+        public string href { get; set; }
 
         public static Link with(string verdi)
         {
