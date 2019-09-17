@@ -14,9 +14,9 @@ used if the full URI to the target is known.
 
 Full https URIs are sensitive to changes in the FINT API deployment configuration.  To ensure that
 links are robust, the FINT APIs also support convenience methods that enables implementors to
-generate links when the target Java class is known.  In these cases the methods
+generate links when the target type is known.  In these cases the methods
 `Link.with(Type, String...)` or `Link.with(Type, String)` come in handy.  The first argument is the
-Java class of the target resource, so to link to a `Person` you use
+type of the target resource, so to link to a `Person` you use
 `Link.with(typeof(Person), ...)`.
 
 The second parameter(s) are the path element that specify the identifier for the target.  They are
