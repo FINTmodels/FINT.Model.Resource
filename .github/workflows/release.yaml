@@ -1,0 +1,27 @@
+name: Publish new release to NuGet
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '3.1.x'
+
+      - name: .NET build
+        run: |
+          echo Version is ${{env.VERSION:1}}
+          dotnet msbuild -t:restore,build,pack -p:Configuration=Release -p:Version=${{env.VERSION:1}} FINT.Information.Model.sln
+        env: 
+          VERSION: ${{github.event.release.tag_name}}
+
+      - name: Publish new release to NuGet
+        run: |
+          dotnet nuget push FINT.Model.Resource/bin/Release/FINT.Model.Resource.*.nupkg -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json
