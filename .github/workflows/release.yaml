@@ -4,7 +4,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
@@ -17,8 +17,8 @@ jobs:
 
       - name: .NET build
         run: |
-          echo "Version is ${VERSION:1}"
-          dotnet msbuild -t:restore,build,pack -p:Configuration=Release -p:Version="${VERSION:1}" FINT.Model.Resource.sln
+          echo Version is ${VERSION:1}
+          dotnet msbuild -t:restore,build,pack -p:Configuration=Release -p:Version=${VERSION:1} FINT.Model.Resource.sln
         env: 
           VERSION: ${{github.event.release.tag_name}}
 
