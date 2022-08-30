@@ -17,10 +17,11 @@ jobs:
 
       - name: .NET build
         run: |
-          echo Version is ${VERSION:1}
-          dotnet msbuild -t:restore,build,pack -p:Configuration=Release -p:Version=${VERSION:1} FINT.Model.Resource.sln
+          VERSION=${TAG_NAME:1}
+          echo Version is $VERSION
+          dotnet msbuild -t:restore,build,pack -p:Configuration=Release -p:Version=$VERSION -p:PackageVersion=$VERSION FINT.Model.Resource.sln
         env: 
-          VERSION: ${{github.event.release.tag_name}}
+          TAG_NAME: ${{github.event.release.tag_name}}
 
       - name: Publish new release to NuGet
         run: |
